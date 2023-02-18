@@ -6,8 +6,7 @@ const AuthController={
           const Email=req.body.Email;  
           const password=req.body.password;  
           const password2=req.body.password2;  
-
-
+          const errorMessage=
         }
     }
 }
