@@ -2,11 +2,11 @@ const Validator = require("validator");
 const isEmpty = require("is-empty");
 module.exports = function validateRegisterInput(data) {
 let errors={};
-data.email=!isEmpty(data.email)? data.email:"";
+data.Email=!isEmpty(data.Email)? data.Email:"";
 data.password = !isEmpty(data.password) ? data.password : "";
 data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
-if(Validator.isEmpty(data.email)){
+if(Validator.isEmpty(data.Email)){
     errors="Email field is required!!";
 }
 if (Validator.isEmpty(data.password)) {
