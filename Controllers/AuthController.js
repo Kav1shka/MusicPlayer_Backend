@@ -9,26 +9,30 @@ const validateRegisterInput = require("../Validation/register");
 const AuthController = {
   register: async (req, res) => {
     try {
-      const Email = req.body.Email;
+      const email = req.body.email;
       const password = req.body.password;
       const password2 = req.body.password2;
-      console.log("came here 1");
-      const errorMessage = validateRegisterInput(Email, password, password2);
-      console.log("came here 2");
-      if (errorMessage) return res.status(400).json({ message: errorMessage });
+   
+      const errorMessage = validateRegisterInput({
+        email,
+        password,
+        password2,
+      });
+      
+      // if (errorMessage) return res.status(400).json({ message: errorMessage });
 
-      const userExists = await User.findOne({ Email });
-
+      const userExists = await User.findOne({ email });
+      console.log("came here 6");
       if (userExists) {
         return res
           .status(400)
           .json({ message: "This email is already in use" });
       }
-
+   
       const hashpassword = await bcrypt.hash(password, 10);
 
       await new User({
-        Email,
+        email,
         password: hashpassword,
         password2,
       }).save();
