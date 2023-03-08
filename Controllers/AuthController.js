@@ -22,7 +22,7 @@ const AuthController = {
       // if (errorMessage) return res.status(400).json({ message: errorMessage });
 
       const userExists = await User.findOne({ email });
-      console.log("came here 6");
+    
       if (userExists) {
         return res
           .status(400)
@@ -40,7 +40,7 @@ const AuthController = {
         message: "You have successfully registered. Please login now",
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(500).json({ message: error.message });
     }
   },
