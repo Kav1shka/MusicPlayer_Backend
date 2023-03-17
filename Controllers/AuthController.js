@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../Models/user");
 
-const validateRegisterInput = require("../Validation/register");
+const { registerValid } = require("../Validation/register");
 // const validateLoginInput = require("../Validation/login");
 
 const AuthController = {
@@ -13,7 +13,7 @@ const AuthController = {
       const password = req.body.password;
       const password2 = req.body.password2;
    
-      const errorMessage = validateRegisterInput({
+     const errorMessage= registerValid({
         email,
         password,
         password2,
@@ -44,6 +44,20 @@ const AuthController = {
       res.status(500).json({ message: error.message });
     }
   },
+  login:async(req,res)=>{
+try {
+  const email=req.body.email;
+  const password=req.body.password;
+  const errorMessage= Valid({
+    email,
+    password,
+    password2,
+  });
+  
+} catch (error) {
+  
+}
+  }
 };
 
 module.exports = AuthController;
