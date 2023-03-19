@@ -56,6 +56,7 @@ try {
   // if (errorMessage) return res.status(400).json({ message: errorMessage });
 
   const user=await User.findOne({email});
+  const details = await User.findOne(user);
   if(!user){
     return res.status(400).json({message:"Not registered email"});
   }

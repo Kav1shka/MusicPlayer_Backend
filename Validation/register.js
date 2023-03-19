@@ -12,8 +12,8 @@ const registerValid = (email, password,password2)=>{
 };
 
 
-  const loginValid = (Email, password) =>{
-    if (!Email) return "Please enter your email";
+  const loginValid = (email, password) =>{
+    if (!email) return "Please enter your email";
     if (!password) return "Please enter your password";
   };
  
