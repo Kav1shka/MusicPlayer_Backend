@@ -8,7 +8,7 @@ const { registerValid ,loginValid} = require("../Validation/register");
 
 const AuthController = {
   register: async (req, res) => {
-    try {
+    try { 
       const email = req.body.email;
       const password = req.body.password;
       const password2 = req.body.password2;
