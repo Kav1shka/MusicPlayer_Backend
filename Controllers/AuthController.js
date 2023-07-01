@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../Models/user");
 
+
 const { registerValid ,loginValid} = require("../Validation/register");
 // const validateLoginInput = require("../Validation/login");
 
@@ -81,7 +82,57 @@ res
   console.log(error);
   res.status(500).json({ message: error.message });
 }
-  }
+  },
+
+loginWith_spotify:async(req,res)=>{
+  // app.get('/callback', function(req, res) {
+
+    // var code = req.query.code || null;
+    // var state = req.query.state || null;
+  
+    // if (state === null) {
+    //   res.redirect('/#' +
+    //     querystring.stringify({
+    //       error: 'state_mismatch'
+    //     }));
+    // } else {
+    //   var authOptions = {
+    //     url: 'https://accounts.spotify.com/api/token',
+    //     form: {
+    //       code: code,
+    //       redirect_uri: redirect_uri,
+    //       grant_type: 'authorization_code'
+    //     },
+    //     headers: {
+    //       'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
+    //     },
+    //     json: true
+    //   };
+    // }
+  // });
+var client_id = '6e34774d68364a58ad133dc66586c6ef';
+var redirect_uri = 'http://localhost:8000/callback';
+
+
+// app.get('/login', function(req, res) {
+
+  var state = generateRandomString(16);
+  var scope = 'user-read-private user-read-email';
+
+  res.redirect('https://accounts.spotify.com/authorize?' +
+    querystring.stringify({
+      response_type: 'code',
+      client_id: client_id,
+      scope: scope,
+      redirect_uri: redirect_uri,
+      state: state
+    }));
+// });
+
+
+}
+
+
 };
 
 module.exports = AuthController;
