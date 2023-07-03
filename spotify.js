@@ -1,6 +1,6 @@
 // // Import required libraries
-// const express = require('express')
-// const SpotifyWebApi = require('spotify-web-api-node')
+const express = require('express')
+const SpotifyWebApi = require('spotify-web-api-node')
 
 // // Create new SpotifyWebApi object
 // const spotifyApi = new SpotifyWebApi({
@@ -38,3 +38,44 @@
 // app.listen(3000, () => {
 //   console.log('Server running on port 3000')
 // })
+
+//--------------------------------------------8
+// var client_id = '6e34774d68364a58ad133dc66586c6ef';
+// var client_secret = '079010703d394394911bc2af8f48698f';
+
+// var authOptions = {
+//   url: 'https://accounts.spotify.com/api/token',
+//   headers: {
+//     'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
+//   },
+//   form: {
+//     grant_type: 'client_credentials'
+//   },
+//   json: true
+// };
+
+// request.post(authOptions, function(error, response, body) {
+//   if (!error && response.statusCode === 200) {
+//     var token = body.access_token;
+//   }
+// });
+
+var client_id = '6e34774d68364a58ad133dc66586c6ef';
+var client_secret = '079010703d394394911bc2af8f48698f';
+
+var authOptions = {
+  url: 'https://accounts.spotify.com/api/token',
+  headers: {
+    'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
+  },
+  form: {
+    grant_type: 'client_credentials'
+  },
+  json: true
+};
+
+request.post(authOptions, function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+    var token = body.access_token;
+  }
+});
